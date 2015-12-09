@@ -1,0 +1,60 @@
+#codec: zh_CN.utf8
+
+
+1.启动参数
+
+
+setenv bootargs root=/dev/ram0 console=ttySAC0,115200 initrd=0x50800000,0x800000 mtdparts=s5pv210-nand:1m@0(bios),1m(params),1m(logo),5m(kernel),8m(data),8m(ramdisk)ro,-(home)
+
+
+2.烧写位置与方法
+
+uboot:
+	tftp 50008000 u-boot.bin
+	nand erase 0x0 0x100000
+	nand write 50008000 0x0 0x100000
+
+zImage:
+	tftp 50008000 zImage
+	nand erase 0x300000 0x500000
+	nand write 50008000 0x300000 0x500000
+
+ramdisk.img:
+	tftp 50008000 ramdisk.img
+	nand erase 0x1000000 0x800000
+	nand write 50008000 0x1000000 0x800000
+
+app.img:
+	tftp 50008000 app.img
+	nand erase 0x1800000
+	nand write.yaffs 50008000 0x1800000 $(filesize)
+
+
+3.自启动选项：
+	setenv bootcmd 'nand read 50008000 300000 500000; nand read 50800000 1000000 800000; bootm 50008000'
+
+4.编译方法：
+	将内核源代码解压到kernel_header目录下，使用docs下的配置文件编译内核，然后：
+
+	make app_install,	用来生成需要的应用程序
+	make pc_install，	生成pc端应用程序
+	make image,			生成最终映像
+
+	images文件夹包含所有映像
+
+5. 运行方法:
+	step1:	启动开发板
+	step2:	运行pc端程序ehmanager
+	step3:	确保网络联通的前提下，使用ehmanager登陆开发板并操作，默认初始开发板ip为192.168.163.4，默认密码为tarena
+
+注：
+
+	代码中不包含uboot，qt和内核源代码。建议使用images文件夹下给的uboot启动内核，其他版本uboot不一定能引导或者烧写运行该项目。
+
+	ramdisk.img 为根文件系统，可以直接使用。
+	如果想新生成根文件系统，使用root权限运行make root命令。
+
+
+
+
+

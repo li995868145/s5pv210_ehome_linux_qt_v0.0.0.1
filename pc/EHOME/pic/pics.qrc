@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/pics">
+        <file>camora.bmp</file>
+        <file>comunication.bmp</file>
+        <file>control.bmp</file>
+        <file>dinner.jpg</file>
+        <file>getout.jpg</file>
+        <file>getup.jpg</file>
+        <file>holiday.jpg</file>
+        <file>home.jpg</file>
+        <file>light.bmp</file>
+        <file>light.jpg</file>
+        <file>music.bmp</file>
+        <file>pics.qrc</file>
+        <file>play.jpg</file>
+        <file>redlight.jpg</file>
+        <file>rest.jpg</file>
+        <file>screen.bmp</file>
+        <file>setting.bmp</file>
+        <file>Thumbs.db</file>
+        <file>tv.bmp</file>
+    </qresource>
+</RCC>

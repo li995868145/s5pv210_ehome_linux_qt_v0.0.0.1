@@ -1,0 +1,51 @@
+
+export HOME=/tmp/
+
+export APPS=/home/
+
+export QTDIR=$APPS
+export TSLIBDIR=$APPS
+
+export PATH=$APPS/bin:$PATH
+export LD_LIBRARY_PATH=$APPS/lib:$LD_LIBRARY_PATH
+
+
+export TSLIB_FBDEVICE=/dev/fb0
+#触摸屏设备节点
+export TSLIB_TSDEVICE=/dev/event3
+
+export TSLIB_CONFFILE=$TSLIBDIR/etc/ts.conf
+export TSLIB_PLUGINDIR=$TSLIBDIR/lib/ts
+export TSLIB_CALIBFILE=$TSLIBDIR/etc/pointercal
+export TSLIB_CONSOLEDEVICE=none
+#同时支持触摸屏(/dev/event1)和USB鼠标(/dev/mouse2,不是/dev/event3,具体可以通过cat /proc/bus/input/devices查看对应关系)
+#export QWS_MOUSE_PROTO="Tslib:/dev/event1 Intellimouse:/dev/mouse2"
+
+export QWS_MOUSE_PROTO="Tslib:/dev/event3"
+#export QWS_MOUSE_PROTO="IntelliMouse:/dev/mouse2"
+
+#屏幕大小
+export QWS_SIZE=800X480
+
+#按键支持(包括板卡ＧＰＩＯ按键和ＵＳＢ标准键盘,必须遵循input子系统)
+#export QWS_KEYBOARD="TTY:/dev/event4 TTY:/dev/event5"
+#export QWS_KEYBOARD="TTY:/dev/event1"
+
+#(qt4.5.2)
+export QWS_KEYBOARD=USB:/dev/event1
+
+#字库
+export QT_QWS_FONTDIR=$QTDIR/lib/fonts
+
+#图片显示相关
+export QT_PLUGIN_PATH=$QTDIR/plugins
+
+#字体显示有关系
+export QWS_DISPLAY="LinuxFB:mmWidth180:0"
+
+
+export RECIEVER_PLUGIN_DIR=/home/reciever/
+export TRIGGER_PLUGIN_DIR=/home/trigger/
+
+
+export CONFIG_ETH0="192.168.163.4"

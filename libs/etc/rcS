@@ -1,0 +1,18 @@
+#!/bin/sh
+
+
+source /home/etc/profile
+
+if [ -n `ifconfig|grep eth0` ]
+then
+	ifconfig eth0 `/bin/cat /home/etc/netconfig`
+	ifconfig lo up
+fi
+
+find /home/modules/ -name *ko -exec insmod {} \;
+
+/home/bin/emi_core -d
+
+/home/bin/eh_server&
+
+/home/bin/bdehmanager -qws &

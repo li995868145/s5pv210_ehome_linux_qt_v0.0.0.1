@@ -1,0 +1,5 @@
+# Ash profile 
+# vim: syntax=sh
+
+source /home/etc/profile
+
